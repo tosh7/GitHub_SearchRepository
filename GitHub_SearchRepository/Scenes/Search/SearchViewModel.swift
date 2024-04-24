@@ -11,7 +11,7 @@ import Combine
 final class SearchViewModel: ObservableObject {
 
     // Outputs
-    @Published var repositories: [RepositoryInfo] = []
+    @Published var repositories: [RepositoryResponse] = []
 
     private let apiClient: APIClient
     private var textFieldValuePublisher = PassthroughSubject<String, Never>()
