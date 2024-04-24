@@ -21,6 +21,7 @@
 		740085702BD94EE90037119B /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400856F2BD94EE90037119B /* Repository.swift */; };
 		740085722BD958530037119B /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740085712BD958530037119B /* HTTPMethodType.swift */; };
 		740085742BD958980037119B /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740085732BD958980037119B /* RequestType.swift */; };
+		740085762BD960B00037119B /* APIClient+endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740085752BD960B00037119B /* APIClient+endpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		7400856F2BD94EE90037119B /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		740085712BD958530037119B /* HTTPMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodType.swift; sourceTree = "<group>"; };
 		740085732BD958980037119B /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		740085752BD960B00037119B /* APIClient+endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+endpoints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				7400856D2BD94BC30037119B /* APIClient.swift */,
+				740085752BD960B00037119B /* APIClient+endpoints.swift */,
 				740085712BD958530037119B /* HTTPMethodType.swift */,
 				740085732BD958980037119B /* RequestType.swift */,
 			);
@@ -316,6 +319,7 @@
 				7400856E2BD94BC30037119B /* APIClient.swift in Sources */,
 				740085332BD949A40037119B /* AppDelegate.swift in Sources */,
 				740085722BD958530037119B /* HTTPMethodType.swift in Sources */,
+				740085762BD960B00037119B /* APIClient+endpoints.swift in Sources */,
 				740085702BD94EE90037119B /* Repository.swift in Sources */,
 				7400856A2BD94B9E0037119B /* RepositoryViewModel.swift in Sources */,
 				740085662BD94B8B0037119B /* SearchViewModel.swift in Sources */,

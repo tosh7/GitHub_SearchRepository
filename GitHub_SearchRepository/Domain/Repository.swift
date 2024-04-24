@@ -7,6 +7,20 @@
 
 import Foundation
 
+struct RepositoryRequest: RequestType {
+
+    var path: String {
+        "search/repositories?q=\(keyword)"
+    }
+    let method: HTTPMethodType = .get
+
+    var keyword: String
+
+    init(keyword: String) {
+        self.keyword = keyword
+    }
+}
+
 struct RepositoryResponse: Codable {
     let totalCount: Int
     let incompleteResults: Bool
@@ -18,7 +32,7 @@ struct RepositoryResponse: Codable {
         let name: String
         let fullName: String
         let owner: Owner
-        let isPrivate: Bool
+        let isPrivate: Bool?
         let htmlUrl: String
         let description: String?
         let fork: Bool

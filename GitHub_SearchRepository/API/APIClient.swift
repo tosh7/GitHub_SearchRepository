@@ -9,11 +9,11 @@ import Foundation
 
 actor APIClient {
 
-    let baseURLString: String = "https://api.github.com"
+    let baseURLString: String = "https://api.github.com/"
 
     init() {}
 
-    func makeGetRequest<Request, Response>(request: Request) async -> Result<Response, Error>? where Request: RequestType & Encodable, Response: Decodable {
+    func makeGetRequest<Request, Response>(request: Request) async -> Result<Response, Error> where Request: RequestType, Response: Decodable {
         let url = URL(string: baseURLString + request.path)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

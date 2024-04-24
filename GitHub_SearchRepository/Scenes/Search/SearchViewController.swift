@@ -11,6 +11,11 @@ final class SearchViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+
+        Task {
+            let hoge = await APIClient().getRepository(.init(keyword: "tosh7"))
+            print(hoge)
+        }
     }
 
     required init?(coder: NSCoder) {
