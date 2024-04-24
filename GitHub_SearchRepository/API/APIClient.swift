@@ -25,7 +25,7 @@ actor APIClient {
         ]
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            // should call if response.statusCode is 200 ..< 300
+            // should check if response.statusCode is 200 ..< 300, and if not throw error
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             let decodedData = try jsonDecoder.decode(Response.self, from: data)
