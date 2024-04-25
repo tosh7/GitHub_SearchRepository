@@ -8,6 +8,6 @@
 import Foundation
 
 protocol RequestType {
-    var path: String { get }
-    var method: HTTPMethodType { get }
+    static var path: String { get }
+    static var method: HTTPMethodType { get }
 }

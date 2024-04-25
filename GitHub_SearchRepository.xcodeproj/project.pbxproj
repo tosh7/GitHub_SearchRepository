@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		199D0F192BDA76CB0057979A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199D0F182BDA76CB0057979A /* APIError.swift */; };
 		740085332BD949A40037119B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740085322BD949A40037119B /* AppDelegate.swift */; };
 		740085352BD949A40037119B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740085342BD949A40037119B /* SceneDelegate.swift */; };
 		740085372BD949A40037119B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740085362BD949A40037119B /* SearchViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		199D0F182BDA76CB0057979A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		7400852F2BD949A40037119B /* GitHub_SearchRepository.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHub_SearchRepository.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		740085322BD949A40037119B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		740085342BD949A40037119B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				740085752BD960B00037119B /* APIClient+endpoints.swift */,
 				740085712BD958530037119B /* HTTPMethodType.swift */,
 				740085732BD958980037119B /* RequestType.swift */,
+				199D0F182BDA76CB0057979A /* APIError.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				740085332BD949A40037119B /* AppDelegate.swift in Sources */,
 				740085722BD958530037119B /* HTTPMethodType.swift in Sources */,
 				740085762BD960B00037119B /* APIClient+endpoints.swift in Sources */,
+				199D0F192BDA76CB0057979A /* APIError.swift in Sources */,
 				740085702BD94EE90037119B /* Repository.swift in Sources */,
 				7400856A2BD94B9E0037119B /* RepositoryViewModel.swift in Sources */,
 				740085662BD94B8B0037119B /* SearchViewModel.swift in Sources */,

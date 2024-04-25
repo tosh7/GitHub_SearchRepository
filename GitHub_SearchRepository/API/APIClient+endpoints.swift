@@ -8,7 +8,7 @@
 import Foundation
 
 extension APIClient {
-    func getRepository(_ request: RepositoryRequest) async -> Result<RepositoryResponse, Error> {
+    func getRepository(_ request: RepositoryRequest) async -> Result<RepositoryResponse, APIError> {
         await self.makeGetRequest(request: request)
     }
 }

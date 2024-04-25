@@ -7,17 +7,16 @@
 
 import Foundation
 
-struct RepositoryRequest: RequestType {
+struct RepositoryRequest: RequestType, Codable {
 
-    var path: String {
-        "search/repositories?q=\(keyword)"
-    }
-    let method: HTTPMethodType = .get
+    static let path: String = "search/repositories"
+    static let method: HTTPMethodType = .get
 
-    var keyword: String
+    var q: String
+    var per_page: Int = 10
 
     init(keyword: String) {
-        self.keyword = keyword
+        self.q = keyword
     }
 }
 

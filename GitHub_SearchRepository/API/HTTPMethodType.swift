@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HTTPMethodType: String {
+enum HTTPMethodType: String, Codable {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
