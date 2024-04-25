@@ -22,6 +22,7 @@ final class SearchViewModel: ObservableObject {
 
         textFieldValuePublisher
             .debounce(for: .seconds(1.0), scheduler: RunLoop.main)
+            .removeDuplicates()
             .sink { [weak self] in
                 if $0.isEmpty {
                     self?.repositories = .init(totalCount: 0, incompleteResults: false, items: [])
@@ -35,7 +36,7 @@ final class SearchViewModel: ObservableObject {
 // Inputs
 extension SearchViewModel {
     func textFiledDidChange(word: String) {
-        // To use removeDeplicate, put in PassthroughSubject
+        // To use debounce, put in PassthroughSubject
         textFieldValuePublisher.send(word)
     }
 }
