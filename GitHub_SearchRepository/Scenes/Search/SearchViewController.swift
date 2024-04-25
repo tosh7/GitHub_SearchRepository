@@ -13,6 +13,8 @@ final class SearchViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+
+        view.backgroundColor = .white
     }
 
     required init?(coder: NSCoder) {
