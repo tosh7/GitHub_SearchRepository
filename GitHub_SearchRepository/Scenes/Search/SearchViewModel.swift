@@ -11,7 +11,7 @@ import Combine
 final class SearchViewModel: ObservableObject {
 
     // Outputs
-    @Published var repositories: [RepositoryResponse] = []
+    @Published var repositories: RepositoryResponse?
 
     private let apiClient: APIClient
     private var textFieldValuePublisher = PassthroughSubject<String, Never>()
@@ -41,7 +41,14 @@ extension SearchViewModel {
     private func callAPI(word: String) {
         Task {
             let result = await APIClient().getRepository(.init(keyword: word))
-            print(result)
+
+            switch result {
+            case .success(let value):
+                self.repositories = value
+                print(value)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }
