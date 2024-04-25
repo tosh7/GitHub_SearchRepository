@@ -38,9 +38,10 @@ extension SearchViewModel {
 
 // Private methods
 extension SearchViewModel {
-    func callAPI(word: String) {
+    private func callAPI(word: String) {
         Task {
-            // APIClient.call
+            let result = await APIClient().getRepository(.init(keyword: word))
+            print(result)
         }
     }
 }

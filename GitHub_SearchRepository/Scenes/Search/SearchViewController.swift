@@ -9,17 +9,35 @@ import UIKit
 
 final class SearchViewController: UIViewController {
 
+    private let viewModel: SearchViewModel = .init(apiClienst: APIClient())
+
     init() {
         super.init(nibName: nil, bundle: nil)
-
-        Task {
-            let hoge = await APIClient().getRepository(.init(keyword: "tosh7"))
-            print(hoge)
-        }
     }
 
     required init?(coder: NSCoder) {
         fatalError()
     }
+
+    private lazy var searchController = {
+        let search = UISearchController()
+        search.searchBar.delegate = self
+        return search
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationItem.searchController = searchController
+    }
 }
 
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.textFiledDidChange(word: searchText)
+    }
+}
+
+#Preview {
+    SearchViewController()
+}
