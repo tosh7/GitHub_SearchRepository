@@ -22,10 +22,13 @@ final class SearchViewModel: ObservableObject {
 
         textFieldValuePublisher
             .debounce(for: .seconds(1.0), scheduler: RunLoop.main)
-            .filter{ !$0.isEmpty }
             .sink { [weak self] in
-            self?.callAPI(word: $0)
-        }.store(in: &cancellabeles)
+                if $0.isEmpty {
+                    self?.repositories = .init(totalCount: 0, incompleteResults: false, items: [])
+                } else {
+                    self?.callAPI(word: $0)
+                }
+            }.store(in: &cancellabeles)
     }
 }
 
