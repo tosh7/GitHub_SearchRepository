@@ -10,9 +10,11 @@ import Foundation
 struct Repository: Hashable {
     var id: Int
     var name: String
-    var url: URL
+    var fullName: String
+    var description: String
+    var url: String
     var ownerLogin: String
-    var ownerAvatorUrl: URL
+    var ownerAvatorUrl: String
     var stargazersCount: Int
 }
 
@@ -20,9 +22,11 @@ extension Repository {
     init(_ response: RepositoryResponse.Repository) {
         self.id = response.id
         self.name = response.name
-        self.url = URL(string: response.url)!
+        self.fullName = response.fullName
+        self.description = response.description ?? ""
+        self.url = response.url
         self.ownerLogin = response.owner.login
-        self.ownerAvatorUrl = URL(string: response.owner.avatarUrl)!
+        self.ownerAvatorUrl = response.owner.avatarUrl
         self.stargazersCount = response.stargazersCount
     }
 }
