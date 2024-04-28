@@ -11,7 +11,7 @@ import Combine
 final class SearchViewModel: ObservableObject {
 
     // Outputs
-    @Published var repositories: RepositoryResponse?
+    @Published var repositories: [Repository] = []
 
     private let apiClient: APIClient
     private var textFieldValuePublisher = PassthroughSubject<String, Never>()
@@ -25,7 +25,7 @@ final class SearchViewModel: ObservableObject {
             .removeDuplicates()
             .sink { [weak self] in
                 if $0.isEmpty {
-                    self?.repositories = .init(totalCount: 0, incompleteResults: false, items: [])
+                    self?.repositories = []
                 } else {
                     self?.callAPI(word: $0)
                 }
@@ -49,7 +49,7 @@ extension SearchViewModel {
 
             switch result {
             case .success(let value):
-                self.repositories = value
+                self.repositories = value.items.map { Repository($0) }
                 print(value)
             case .failure(let error):
                 print(error)

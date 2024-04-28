@@ -20,7 +20,7 @@ final class SearchViewController: UIViewController {
         c.delegate = self
         return c
     }()
-    lazy var dataSource: UICollectionViewDiffableDataSource<Section, String> = createDataSource()
+    lazy var dataSource: UICollectionViewDiffableDataSource<Section, Repository> = createDataSource()
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
@@ -39,9 +39,8 @@ final class SearchViewController: UIViewController {
         viewModel.$repositories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] repository in
-            guard let self,
-                  let repository else { return }
-            self.updateUI(names: repository.items.map { $0.url })
+            guard let self else { return }
+                self.updateUI(repositories: repository)
         }.store(in: &cancellables)
     }
 
@@ -72,20 +71,20 @@ extension SearchViewController: UICollectionViewDelegate {
 }
 
 extension SearchViewController {
-    private func createDataSource() -> UICollectionViewDiffableDataSource<Section, String> {
-        let celRRegistration = UICollectionView.CellRegistration<SearchResultCell, String> { (cell, indexPath, item) in
-            cell.setup(name: item)
+    private func createDataSource() -> UICollectionViewDiffableDataSource<Section, Repository> {
+        let celRRegistration = UICollectionView.CellRegistration<SearchResultCell, Repository> { (cell, indexPath, item) in
+            cell.setup(repository: item)
         }
 
-        return UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView) { (collectionView, indexPath, identifier) -> UICollectionViewCell? in
+        return UICollectionViewDiffableDataSource<Section, Repository>(collectionView: collectionView) { (collectionView, indexPath, identifier) -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(using: celRRegistration, for: indexPath, item: identifier)
         }
     }
 
-    func updateUI(names: [String]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+    func updateUI(repositories: [Repository]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Repository>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(names)
+        snapshot.appendItems(repositories)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

@@ -14,26 +14,38 @@ final class SearchResultCell: UICollectionViewListCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        contentView.addSubview(title)
-        title.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(listContentView)
+        listContentView.translatesAutoresizingMaskIntoConstraints = false
 
-        title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        title.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            listContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            listContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            listContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            listContentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            listContentView.heightAnchor.constraint(equalToConstant: 150)
+        ])
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private let title: CustomLabel = {
-        let label = CustomLabel()
-        return label
-    }()
 
-    func setup(name: String) {
-        title.text = name
+    var title: String = ""
+
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        var content = defaultContentConfiguration().updated(for: state)
+        content.text = title
+        listContentView.configuration = content
+
+        guard let textLayoutGuide = listContentView.textLayoutGuide else { return }
+
+        let constraint = separatorLayoutGuide.leadingAnchor.constraint(equalTo: textLayoutGuide.leadingAnchor)
+        constraint.isActive = true
+    }
+
+    func setup(repository: Repository) {
+        title = repository.fullName
     }
 }
 
