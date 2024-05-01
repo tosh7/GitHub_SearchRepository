@@ -9,7 +9,9 @@ import Foundation
 
 final class RepositoryViewModel {
 
-    init() {
+    private let repository: Repository
 
+    init(repository: Repository) {
+        self.repository = repository
     }
 }

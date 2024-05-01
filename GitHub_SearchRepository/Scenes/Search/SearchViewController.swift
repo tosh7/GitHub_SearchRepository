@@ -39,9 +39,21 @@ final class SearchViewController: UIViewController {
         viewModel.$repositories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] repository in
-            guard let self else { return }
+                guard let self else { return }
                 self.updateUI(repositories: repository)
         }.store(in: &cancellables)
+
+        viewModel.$router
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] route in
+                guard let self, let route else { return }
+                switch route {
+                case .goDetail(let repo):
+                    let vc = RepositoryViewController(repository: repo)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     required init?(coder: NSCoder) {
@@ -67,7 +79,9 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.cellDidTapped(index: indexPath.row)
+    }
 }
 
 extension SearchViewController {

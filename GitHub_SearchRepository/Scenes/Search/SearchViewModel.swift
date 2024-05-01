@@ -10,8 +10,13 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
 
+    enum Router {
+        case goDetail(Repository)
+    }
+
     // Outputs
     @Published var repositories: [Repository] = []
+    @Published var router: Router?
 
     private let apiClient: APIClient
     private var textFieldValuePublisher = PassthroughSubject<String, Never>()
@@ -38,6 +43,10 @@ extension SearchViewModel {
     func textFiledDidChange(word: String) {
         // To use debounce, put in PassthroughSubject
         textFieldValuePublisher.send(word)
+    }
+
+    func cellDidTapped(index: Int) {
+        router = .goDetail(repositories[index])
     }
 }
 

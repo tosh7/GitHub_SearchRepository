@@ -9,7 +9,10 @@ import UIKit
 
 final class RepositoryViewController: UIViewController {
 
-    init() {
+    private let viewModel: RepositoryViewModel
+
+    init(repository: Repository) {
+        self.viewModel = RepositoryViewModel(repository: repository)
         super.init(nibName: nil, bundle: nil)
     }
 
