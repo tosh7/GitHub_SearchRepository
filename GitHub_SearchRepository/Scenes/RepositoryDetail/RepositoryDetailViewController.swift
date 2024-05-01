@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class RepositoryViewController: UIViewController {
+final class RepositoryDetailViewController: UIViewController {
 
-    private let viewModel: RepositoryViewModel
+    private let viewModel: RepositoryDetailViewModel
 
     init(repository: Repository) {
-        self.viewModel = RepositoryViewModel(repository: repository)
+        self.viewModel = RepositoryDetailViewModel(repository: repository)
         super.init(nibName: nil, bundle: nil)
     }
 

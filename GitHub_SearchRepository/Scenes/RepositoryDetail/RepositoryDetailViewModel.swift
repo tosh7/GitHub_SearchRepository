@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RepositoryViewModel {
+final class RepositoryDetailViewModel {
 
     private let repository: Repository
 

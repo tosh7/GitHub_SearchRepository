@@ -49,7 +49,7 @@ final class SearchViewController: UIViewController {
                 guard let self, let route else { return }
                 switch route {
                 case .goDetail(let repo):
-                    let vc = RepositoryViewController(repository: repo)
+                    let vc = RepositoryDetailViewController(repository: repo)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
