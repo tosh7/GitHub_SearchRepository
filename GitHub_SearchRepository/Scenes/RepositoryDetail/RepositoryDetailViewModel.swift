@@ -6,12 +6,20 @@
 //
 
 import Foundation
+import Combine
 
 final class RepositoryDetailViewModel {
 
-    private let repository: Repository
+    @Published private(set) var repository: Repository
 
     init(repository: Repository) {
         self.repository = repository
+    }
+}
+
+// Inputs
+extension RepositoryDetailViewModel {
+    func starButtonDidTapped() {
+        // call star repository API here
     }
 }
