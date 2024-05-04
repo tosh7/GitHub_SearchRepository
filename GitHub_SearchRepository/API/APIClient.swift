@@ -37,6 +37,9 @@ actor APIClient {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             guard let httpResponse = response as? HTTPURLResponse else { return .failure(.unknown)}
             guard 200..<300 ~= httpResponse.statusCode else { return .failure(.error(statusCode: httpResponse.statusCode ))}
+            if httpResponse.statusCode == 204 {
+                return .success(EmptyResponse() as! Response)
+            }
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             let decodedData = try jsonDecoder.decode(Response.self, from: data)
@@ -78,6 +81,7 @@ actor APIClient {
     private func makeURLRequest<Request>(request: Request) throws -> URLRequest where Request: RequestType & PathEncodable {
         do {
             let url = URL(string: baseURLString + type(of: request).path + request.addtionalPath)!
+            print(url)
 
             var urlRequest = URLRequest(url: url)
 

@@ -8,7 +8,7 @@
 import Foundation
 
 struct GetStarRepository: RequestType, PathEncodable {
-    static let path: String = "starred"
+    static let path: String = "user/starred"
     static let method: HTTPMethodType = .get
 
     var addtionalPath: String
@@ -16,15 +16,23 @@ struct GetStarRepository: RequestType, PathEncodable {
     init(owner: String, repo: String) {
         self.addtionalPath = "/\(owner)/\(repo)"
     }
+
+    init(fullName: String) {
+        self.addtionalPath = "/\(fullName)"
+    }
 }
 
 struct PutRepository: RequestType, PathEncodable {
-    static let path: String = "starred"
+    static let path: String = "user/starred"
     static let method: HTTPMethodType = .put
 
     var addtionalPath: String
 
     init(owner: String, repo: String) {
         self.addtionalPath = "/\(owner)/\(repo)"
+    }
+
+    init(fullName: String) {
+        self.addtionalPath = "/\(fullName)"
     }
 }

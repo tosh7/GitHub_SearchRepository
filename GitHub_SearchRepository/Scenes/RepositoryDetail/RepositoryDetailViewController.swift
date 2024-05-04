@@ -15,7 +15,7 @@ final class RepositoryDetailViewController: UIViewController {
     private var cancellabled: Set<AnyCancellable> = []
 
     init(repository: Repository) {
-        self.viewModel = RepositoryDetailViewModel(repository: repository)
+        self.viewModel = RepositoryDetailViewModel(repository: repository, apiClient: APIClient())
         super.init(nibName: nil, bundle: nil)
 
         setViews()
@@ -50,6 +50,12 @@ final class RepositoryDetailViewController: UIViewController {
         }, for: .touchUpInside)
         return button
     }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        viewModel.viewDidLoad()
+    }
 }
 
 // private methods
