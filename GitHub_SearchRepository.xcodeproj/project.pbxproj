@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191C13CB2BE5E7D90029E7DD /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191C13CA2BE5E7D90029E7DD /* APIKey.swift */; };
 		199D0F192BDA76CB0057979A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199D0F182BDA76CB0057979A /* APIError.swift */; };
 		199D0F1B2BDA78080057979A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199D0F1A2BDA78080057979A /* SearchResultCell.swift */; };
 		199D0F232BDA7F470057979A /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199D0F212BDA7F470057979A /* RepositoryDetailViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		191C13CA2BE5E7D90029E7DD /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		199D0F182BDA76CB0057979A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		199D0F1A2BDA78080057979A /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		199D0F212BDA7F470057979A /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		191C13C92BE5E7C90029E7DD /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				191C13CA2BE5E7D90029E7DD /* APIKey.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
 		199D0F202BDA7F2C0057979A /* RepositoryDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 				740085772BDD3B3C0037119B /* Model */,
 				7400856B2BD94BAB0037119B /* Domain */,
 				7400856C2BD94BB00037119B /* API */,
+				191C13C92BE5E7C90029E7DD /* Secrets */,
 				7400853B2BD949A50037119B /* Assets.xcassets */,
 				740085402BD949A50037119B /* Info.plist */,
 			);
@@ -335,6 +346,7 @@
 				199D0F242BDA7F470057979A /* RepositoryDetailViewModel.swift in Sources */,
 				7400856E2BD94BC30037119B /* APIClient.swift in Sources */,
 				740085332BD949A40037119B /* AppDelegate.swift in Sources */,
+				191C13CB2BE5E7D90029E7DD /* APIKey.swift in Sources */,
 				740085722BD958530037119B /* HTTPMethodType.swift in Sources */,
 				199D0F232BDA7F470057979A /* RepositoryDetailViewController.swift in Sources */,
 				199D0F1B2BDA78080057979A /* SearchResultCell.swift in Sources */,

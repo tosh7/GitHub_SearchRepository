@@ -64,5 +64,8 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
+# Secrets
+GitHub_SearchRepository/Secrets/*
+
 # Others
 .DS_Store

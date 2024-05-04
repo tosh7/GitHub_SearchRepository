@@ -10,6 +10,7 @@ import Foundation
 actor APIClient {
 
     let baseURLString: String = "https://api.github.com/"
+    let token: String = APIKey.token
 
     init() {}
 
@@ -48,8 +49,7 @@ actor APIClient {
             urlRequest.allHTTPHeaderFields = [
                 "Content-Type": "application/json",
                 "Accept": "application/vnd.github+json",
-                // TODO: add Bearer Token
-                //            "Authorization": "Bearer <YOUR-TOKEN>",
+                "Authorization": "Bearer \(token)",
                 "X-GitHub-Api-Version": "2022-11-28"
             ]
             urlRequest.httpMethod = type(of: request).method.rawValue
