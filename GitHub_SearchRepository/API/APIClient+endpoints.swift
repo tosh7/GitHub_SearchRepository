@@ -9,6 +9,12 @@ import Foundation
 
 extension APIClient {
     func getRepository(_ request: RepositoryRequest) async -> Result<RepositoryResponse, APIError> {
-        await self.makeGetRequest(request: request)
+        await self.call(request: request)
+    }
+    func getStarRepository(_ request: GetStarRepository) async -> Result<EmptyResponse, APIError> {
+        await self.call(request: request)
+    }
+    func putStarRepositroy(_ request: PutRepository) async -> Result<EmptyResponse, APIError> {
+        await self.call(request: request)
     }
 }

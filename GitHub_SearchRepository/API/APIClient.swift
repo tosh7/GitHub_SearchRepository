@@ -14,9 +14,26 @@ actor APIClient {
 
     init() {}
 
-    func makeGetRequest<Request, Response>(request: Request) async -> Result<Response, APIError> where Request: RequestType & Codable, Response: Decodable {
+    func call<Request, Response>(request: Request) async -> Result<Response, APIError> where Request: RequestType & Codable, Response: Decodable {
         do {
             let urlRequest = try makeURLRequest(request: request)
+            return await call(urlRequest: urlRequest)
+        } catch {
+            return .failure(error as! APIError)
+        }
+    }
+
+    func call<Request, Response>(request: Request) async -> Result<Response, APIError> where Request: RequestType & PathEncodable, Response: Decodable {
+        do {
+            let urlRequest = try makeURLRequest(request: request)
+            return await call(urlRequest: urlRequest)
+        } catch {
+            return .failure(error as! APIError)
+        }
+    }
+
+    private func call<Response>(urlRequest: URLRequest) async -> Result<Response, APIError> where Response: Decodable {
+        do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             guard let httpResponse = response as? HTTPURLResponse else { return .failure(.unknown)}
             guard 200..<300 ~= httpResponse.statusCode else { return .failure(.error(statusCode: httpResponse.statusCode ))}
@@ -29,7 +46,7 @@ actor APIClient {
         }
     }
 
-    func makeURLRequest<Request>(request: Request) throws -> URLRequest where Request: RequestType & Codable {
+    private func makeURLRequest<Request>(request: Request) throws -> URLRequest where Request: RequestType & Codable {
         do {
             let url = URL(string: baseURLString + type(of: request).path)!
 
@@ -45,6 +62,24 @@ actor APIClient {
                 components.queryItems = queryItems
                 urlRequest = URLRequest(url: components.url!)
             }
+
+            urlRequest.allHTTPHeaderFields = [
+                "Content-Type": "application/json",
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(token)",
+                "X-GitHub-Api-Version": "2022-11-28"
+            ]
+            urlRequest.httpMethod = type(of: request).method.rawValue
+
+            return urlRequest
+        }
+    }
+
+    private func makeURLRequest<Request>(request: Request) throws -> URLRequest where Request: RequestType & PathEncodable {
+        do {
+            let url = URL(string: baseURLString + type(of: request).path + request.addtionalPath)!
+
+            var urlRequest = URLRequest(url: url)
 
             urlRequest.allHTTPHeaderFields = [
                 "Content-Type": "application/json",
