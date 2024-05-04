@@ -32,4 +32,4 @@ enum APIKey {
 The API token needs to starring READ/WRITE access.
 
 ## License
-See [LICENCE](https://github.com/tosh7/GitHub_SearchRepository/edit/main/LICENSE).
+See the [LICENCE](https://github.com/tosh7/GitHub_SearchRepository/edit/main/LICENSE).
